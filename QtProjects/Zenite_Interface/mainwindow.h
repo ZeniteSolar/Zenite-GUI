@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
+#include <navigation.h>
+#include <acceleration.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,15 +18,25 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void setNavDialog(Navigation *p);
+    void setAccDialog(Acceleration *p);
+    Navigation* getNavDialog();
+    Acceleration* getAccDialog();
+
 
 private slots:
-    void on_Navigation_clicked();
+    void Exitbutton_clicked();
 
-    void on_Acceleration_clicked();
+    void Navigation_clicked();
+
+    void Acceleration_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QPushButton *navi, *accel;
+    Navigation *navDialogPointer;
+    Acceleration *accDialogPointer;
+    QPushButton *navi, *accel, *exitbutton;
     QLabel *labelzenite;
+    QWidget *mainwidget;
 };
 #endif // MAINWINDOW_H

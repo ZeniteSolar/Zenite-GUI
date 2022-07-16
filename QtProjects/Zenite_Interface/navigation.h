@@ -20,9 +20,9 @@ public:
     ~Navigation();
 
 private slots:
-    void on_MainMenu_clicked();
+    void MainMenu_clicked();
 
-    void on_Acceleration_clicked();
+    void Acceleration_clicked();
 
     void on_compass_dial_sliderMoved(int position);
 

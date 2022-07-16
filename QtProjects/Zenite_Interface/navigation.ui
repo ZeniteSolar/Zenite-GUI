@@ -26,10 +26,10 @@
   <widget class="QLabel" name="GPSinfo">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>160</y>
-     <width>141</width>
-     <height>31</height>
+     <x>210</x>
+     <y>140</y>
+     <width>181</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
@@ -39,7 +39,7 @@
     </font>
    </property>
    <property name="text">
-    <string>// GPS INFO</string>
+    <string>// DADOS GPS </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_12">
@@ -263,7 +263,7 @@
      <number>5</number>
     </property>
     <property name="value" stdset="0">
-     <double>11.710000000000001</double>
+     <double>13.710000000000001</double>
     </property>
    </widget>
    <widget class="QLabel" name="VFrameBat3">
@@ -300,7 +300,7 @@
      <number>5</number>
     </property>
     <property name="value" stdset="0">
-     <double>11.590000000000000</double>
+     <double>12.590000000000000</double>
     </property>
    </widget>
    <widget class="QLabel" name="VBatTitle">

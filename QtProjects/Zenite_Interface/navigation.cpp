@@ -1,10 +1,13 @@
 #include "navigation.h"
 
 #include "ui_navigation.h"
+#include "mainwindow.h"
 #include "acceleration.h"
 #include "displayponteiro.h"
 
 #include <QPushButton>
+#include <QScreen>
+#include <QSize>
 
 Navigation::Navigation(QWidget *parent) :
     QDialog(parent),
@@ -12,18 +15,27 @@ Navigation::Navigation(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QScreen *screen;
+    screen = qGuiApp->primaryScreen();
+    QSize size = screen->size();
+    int screenwidth = size.width();
+    int screenheight = size.height();
+    this->setGeometry(0,0,screenwidth,screenheight);
+    this->repaint();
+
     // Inicialização dos displays estilo ponteiro
     _compassDisplay = new DisplayPonteiro(this);
     _compassDisplay->setGeometry(1039,60,200,200);
     _compassDisplay->show();
 
     accel = new QPushButton("Aceleração", this);
-    accel->setGeometry(0,580,660,120);
-    connect(accel, &QPushButton::clicked, this, &Navigation::on_Acceleration_clicked);
+    accel->setGeometry(0,638,682,130);
+    connect(accel, &QPushButton::clicked, this, &Navigation::Acceleration_clicked);
 
     mainmenu = new QPushButton("Menu Principal", this);
-    mainmenu->setGeometry(660,580,660,120);
-    connect(mainmenu, &QPushButton::clicked, this, &Navigation::on_MainMenu_clicked);
+    mainmenu->setGeometry(684,638,682,130);
+    connect(mainmenu, &QPushButton::clicked, this, &Navigation::MainMenu_clicked);
+
 }
 
 Navigation::~Navigation()
@@ -33,21 +45,25 @@ Navigation::~Navigation()
 
 void Navigation::NavWindowCall()
 {
-    this->setModal(true);
-    this->exec();
+    this->showFullScreen();
+    this->open();
 }
 
-void Navigation::on_MainMenu_clicked()
+void Navigation::MainMenu_clicked()
 {
+    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
+    Acceleration* accel = mainw->getAccDialog();
+    accel->close();
+    this->setModal(false);
     this->close();
 }
 
 
-void Navigation::on_Acceleration_clicked()
+void Navigation::Acceleration_clicked()
 {
-    this->close();
-    Acceleration acc;
-    acc.AccWindowCall();
+    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
+    Acceleration* accel = mainw->getAccDialog();
+    accel->AccWindowCall();
 }
 
 

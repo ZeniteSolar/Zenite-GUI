@@ -20,9 +20,9 @@ public:
     ~Acceleration();
 
 private slots:
-    void on_MainMenu_clicked();
+    void MainMenu_clicked();
 
-    void on_Navigation_clicked();
+    void Navigation_clicked();
 
     void on_yaw_dial_sliderMoved(int position); //
 

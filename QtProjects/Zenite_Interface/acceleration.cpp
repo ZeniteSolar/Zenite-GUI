@@ -1,15 +1,26 @@
 #include "acceleration.h"
 #include "ui_acceleration.h"
 #include "navigation.h"
+#include "mainwindow.h"
 #include "displayponteiro.h"
 
 #include <QPushButton>
+#include <QSize>
+#include <QScreen>
 
 Acceleration::Acceleration(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Acceleration)
 {
     ui->setupUi(this);
+
+    QScreen *screen;
+    screen = qGuiApp->primaryScreen();
+    QSize size = screen->size();
+    int screenwidth = size.width();
+    int screenheight = size.height();
+    this->setGeometry(0,0,screenwidth,screenheight);
+    this->repaint();
 
     // Inicialização dos displays estilo ponteiro
     DisplayPonteiro *yawdisp, *pitchdisp, *rowdisp;
@@ -31,12 +42,12 @@ Acceleration::Acceleration(QWidget *parent) :
     _rowDisplay->show();
 
     navi = new QPushButton("Navegação", this);
-    navi->setGeometry(0,580,660,120);
-    connect(navi, &QPushButton::clicked, this, &Acceleration::on_Navigation_clicked);
+    navi->setGeometry(0,638,682,130);
+    connect(navi, &QPushButton::clicked, this, &Acceleration::Navigation_clicked);
 
     mainmenu = new QPushButton("Menu Principal", this);
-    mainmenu->setGeometry(660,580,660,120);
-    connect(mainmenu, &QPushButton::clicked, this, &Acceleration::on_MainMenu_clicked);
+    mainmenu->setGeometry(684,638,682,130);
+    connect(mainmenu, &QPushButton::clicked, this, &Acceleration::MainMenu_clicked);
 
 }
 
@@ -47,21 +58,25 @@ Acceleration::~Acceleration()
 
 void Acceleration::AccWindowCall()
 {
-    this->setModal(true);
-    this->exec();
+    this->showFullScreen();
+    this->open();
 }
 
-void Acceleration::on_MainMenu_clicked()
+void Acceleration::MainMenu_clicked()
 {
+    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
+    Navigation* navig = mainw->getNavDialog();
+    navig->close();
+    this->setModal(false);
     this->close();
 }
 
 
-void Acceleration::on_Navigation_clicked()
+void Acceleration::Navigation_clicked()
 {
-    this->close();
-    Navigation nav;
-    nav.NavWindowCall();
+    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
+    Navigation* navig = mainw->getNavDialog();
+    navig->NavWindowCall();
 }
 
 

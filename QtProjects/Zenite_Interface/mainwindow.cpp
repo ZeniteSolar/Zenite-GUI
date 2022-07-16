@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QLayout>
 #include <QPixmap>
+#include <QScreen>
+#include <math.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,20 +17,44 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+// Interface Setup
+    QScreen *screen;
+    screen = qGuiApp->primaryScreen();
+    QSize size = screen->size();
+    int screenwidth = size.width();
+    int screenheight = size.height();
+
+    centralWidget()->setGeometry(0,0,screenwidth,screenheight);
+    this->repaint();
+
+// Image Setup
     labelzenite = new QLabel(this);
     QPixmap logoZenite;
     logoZenite.load("zenitesolar.png");
     labelzenite->setPixmap(logoZenite);
     labelzenite->setScaledContents(true);
-    labelzenite->setGeometry(360,45,600,540);
+    labelzenite->setGeometry(round(screenwidth/4), 45, round(screenwidth/2), round(screenheight/1.33333));
+    labelzenite->repaint();
+
+// Active Widget Setup
+    exitbutton = new QPushButton("X", this);
+    exitbutton->setGeometry(1333,0,33,33);
+    connect(exitbutton, &QPushButton::clicked, this, &MainWindow::Exitbutton_clicked);
 
     navi = new QPushButton("Navegação", this);
-    navi->setGeometry(0,580,660,120);
-    connect(navi, &QPushButton::clicked, this, &MainWindow::on_Navigation_clicked);
+    navi->setGeometry(0,638,682,130);
+    connect(navi, &QPushButton::clicked, this, &MainWindow::Navigation_clicked);
 
     accel = new QPushButton("Aceleração", this);
-    accel->setGeometry(660,580,660,120);
-    connect(accel, &QPushButton::clicked, this, &MainWindow::on_Acceleration_clicked);
+    accel->setGeometry(684,638,682,130);
+    connect(accel, &QPushButton::clicked, this, &MainWindow::Acceleration_clicked);
+
+// Child Classes Declaration
+//    Navigation nav(this);
+//    navDialogPointer = &nav;
+
+//    Acceleration acc()*/
+
 
 }
 
@@ -37,17 +63,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_Navigation_clicked()
+void MainWindow::setNavDialog(Navigation *p)
 {
-    Navigation nav;
-    nav.NavWindowCall();
+   navDialogPointer=p;
 }
 
-
-void MainWindow::on_Acceleration_clicked()
+void MainWindow::setAccDialog(Acceleration *p)
 {
-    Acceleration acc;
-    acc.AccWindowCall();
+   accDialogPointer=p;
 }
+
+Navigation* MainWindow::getNavDialog()
+{
+    return navDialogPointer;
+}
+
+Acceleration* MainWindow::getAccDialog()
+{
+    return accDialogPointer;
+}
+
+void MainWindow::Exitbutton_clicked()
+{
+    this->close();
+}
+
+void MainWindow::Navigation_clicked()
+{
+    navDialogPointer->NavWindowCall();
+}
+
+void MainWindow::Acceleration_clicked()
+{
+    accDialogPointer->AccWindowCall();
+}
+
 
