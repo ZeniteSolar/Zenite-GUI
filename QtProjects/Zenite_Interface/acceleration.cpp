@@ -1,18 +1,13 @@
 #include "acceleration.h"
-#include "ui_acceleration.h"
-#include "navigation.h"
-#include "mainwindow.h"
-#include "displayponteiro.h"
 
-#include <QPushButton>
-#include <QSize>
-#include <QScreen>
 
 Acceleration::Acceleration(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Acceleration)
 {
     ui->setupUi(this);
+
+    mainwindow_pointer = qobject_cast<MainWindow*>(this->parent());
 
     QScreen *screen;
     screen = qGuiApp->primaryScreen();
@@ -64,19 +59,13 @@ void Acceleration::AccWindowCall()
 
 void Acceleration::MainMenu_clicked()
 {
-    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
-    Navigation* navig = mainw->getNavDialog();
-    navig->close();
-    this->setModal(false);
-    this->close();
+    mainwindow_pointer->CloseSecondaryWindows();
 }
 
 
 void Acceleration::Navigation_clicked()
 {
-    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
-    Navigation* navig = mainw->getNavDialog();
-    navig->NavWindowCall();
+    mainwindow_pointer->getNavDialog()->NavWindowCall();
 }
 
 

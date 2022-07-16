@@ -4,8 +4,11 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
-#include <navigation.h>
-#include <acceleration.h>
+
+#include "main.h"
+
+class Navigation;
+class Acceleration;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +26,7 @@ public:
     Navigation* getNavDialog();
     Acceleration* getAccDialog();
 
+    void CloseSecondaryWindows();
 
 private slots:
     void Exitbutton_clicked();

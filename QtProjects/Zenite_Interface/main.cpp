@@ -1,11 +1,4 @@
-#include "mainwindow.h"
-#include "navigation.h"
-#include "acceleration.h"
-
-#include <QMainWindow>
-#include <QGuiApplication>
-#include <QApplication>
-#include <QScreen>
+#include "main.h"
 
 int main(int argc, char *argv[])
 {

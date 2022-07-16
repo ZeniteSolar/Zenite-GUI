@@ -1,19 +1,12 @@
 #include "navigation.h"
 
-#include "ui_navigation.h"
-#include "mainwindow.h"
-#include "acceleration.h"
-#include "displayponteiro.h"
-
-#include <QPushButton>
-#include <QScreen>
-#include <QSize>
-
 Navigation::Navigation(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Navigation)
 {
     ui->setupUi(this);
+
+    mainwindow_pointer = qobject_cast<MainWindow*>(this->parent());
 
     QScreen *screen;
     screen = qGuiApp->primaryScreen();
@@ -51,19 +44,13 @@ void Navigation::NavWindowCall()
 
 void Navigation::MainMenu_clicked()
 {
-    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
-    Acceleration* accel = mainw->getAccDialog();
-    accel->close();
-    this->setModal(false);
-    this->close();
+    mainwindow_pointer->CloseSecondaryWindows();
 }
 
 
 void Navigation::Acceleration_clicked()
 {
-    MainWindow* mainw= qobject_cast<MainWindow*>(this->parent());
-    Acceleration* accel = mainw->getAccDialog();
-    accel->AccWindowCall();
+    mainwindow_pointer->getAccDialog()->AccWindowCall();
 }
 
 

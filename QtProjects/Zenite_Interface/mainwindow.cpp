@@ -63,6 +63,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::CloseSecondaryWindows()
+{
+    navDialogPointer->close();
+    accDialogPointer->close();
+}
+
 void MainWindow::setNavDialog(Navigation *p)
 {
    navDialogPointer=p;

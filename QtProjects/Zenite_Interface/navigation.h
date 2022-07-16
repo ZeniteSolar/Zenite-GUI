@@ -2,8 +2,16 @@
 #define NAVIGATION_H
 
 #include <QDialog>
+#include <QPushButton>
+#include <QScreen>
+#include <QSize>
 
-#include <displayponteiro.h>
+#include "main.h"
+
+#include "ui_navigation.h"
+
+class DisplayPonteiro;
+class MainWindow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Navigation; }
@@ -28,6 +36,7 @@ private slots:
 
 private:
     Ui::Navigation *ui;
+    MainWindow *mainwindow_pointer;
     QPushButton *accel, *mainmenu;
 };
 

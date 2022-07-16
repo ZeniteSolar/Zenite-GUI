@@ -16,6 +16,7 @@ SOURCES += \
     displayponteiro.cpp
 
 HEADERS += \
+    main.h \
     mainwindow.h \
     navigation.h  \
     acceleration.h \
