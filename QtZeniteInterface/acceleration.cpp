@@ -21,9 +21,9 @@ Acceleration::Acceleration(QWidget *parent) :
     // Inicialização dos displays estilo ponteiro
     DisplayPonteiro *yawdisp, *pitchdisp, *rowdisp;
 
-    yawdisp = new DisplayPonteiro(this, 90);
-    pitchdisp = new DisplayPonteiro(this, 90);
-    rowdisp = new DisplayPonteiro(this, 90);
+    yawdisp = new DisplayPonteiro(this, -90);
+    pitchdisp = new DisplayPonteiro(this, -90);
+    rowdisp = new DisplayPonteiro(this, -90);
 
     this->_yawDisplay= yawdisp;
     this->_pitchDisplay= pitchdisp;
