@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QScreen>
 #include <QSize>
+#include <QFont>
 
 #include "main.h"
 
@@ -37,7 +38,7 @@ private slots:
 private:
     Ui::Navigation *ui;
     MainWindow *mainwindow_pointer;
-    QPushButton *accel, *mainmenu;
+    QPushButton *accel_button, *mainmenu_button;
 };
 
 #endif // NAVIGATION_H

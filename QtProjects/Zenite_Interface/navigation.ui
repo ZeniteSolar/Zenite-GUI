@@ -23,25 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="GPSinfo">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>140</y>
-     <width>181</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>// DADOS GPS </string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
@@ -193,24 +174,6 @@
      <double>11.920000000000000</double>
     </property>
    </widget>
-   <widget class="QLabel" name="VFrameBat1">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>70</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>BAT 1</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="VFrameBat2">
     <property name="geometry">
      <rect>
@@ -323,6 +286,24 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="VFrameBat1">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>70</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>BAT 1</string>
     </property>
    </widget>
   </widget>

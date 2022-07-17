@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
+#include <QFont>
 
 #include "main.h"
 
@@ -29,7 +30,7 @@ public:
     void CloseSecondaryWindows();
 
 private slots:
-    void Exitbutton_clicked();
+    void Exit_button_clicked();
 
     void Navigation_clicked();
 
@@ -39,7 +40,7 @@ private:
     Ui::MainWindow *ui;
     Navigation *navDialogPointer;
     Acceleration *accDialogPointer;
-    QPushButton *navi, *accel, *exitbutton;
+    QPushButton *navig_button, *accel_button, *exit_button;
     QLabel *labelzenite;
     QWidget *mainwidget;
 };

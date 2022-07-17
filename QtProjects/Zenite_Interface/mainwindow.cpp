@@ -36,24 +36,24 @@ MainWindow::MainWindow(QWidget *parent)
     labelzenite->setGeometry(round(screenwidth/4), 45, round(screenwidth/2), round(screenheight/1.33333));
     labelzenite->repaint();
 
-// Active Widget Setup
-    exitbutton = new QPushButton("X", this);
-    exitbutton->setGeometry(1333,0,33,33);
-    connect(exitbutton, &QPushButton::clicked, this, &MainWindow::Exitbutton_clicked);
+    // Active Widget Setup
+    QFont *button_font = new QFont();
+    button_font->setPointSize(28);
 
-    navi = new QPushButton("Navegação", this);
-    navi->setGeometry(0,638,682,130);
-    connect(navi, &QPushButton::clicked, this, &MainWindow::Navigation_clicked);
+    exit_button = new QPushButton("X", this);
+    exit_button->setFont(*button_font);
+    exit_button->setGeometry(1333,0,33,33);
+    connect(exit_button, &QPushButton::clicked, this, &MainWindow::Exit_button_clicked);
 
-    accel = new QPushButton("Aceleração", this);
-    accel->setGeometry(684,638,682,130);
-    connect(accel, &QPushButton::clicked, this, &MainWindow::Acceleration_clicked);
+    navig_button = new QPushButton("Navegação", this);
+    navig_button->setFont(*button_font);
+    navig_button->setGeometry(0,638,682,130);
+    connect(navig_button, &QPushButton::clicked, this, &MainWindow::Navigation_clicked);
 
-// Child Classes Declaration
-//    Navigation nav(this);
-//    navDialogPointer = &nav;
-
-//    Acceleration acc()*/
+    accel_button = new QPushButton("Aceleração", this);
+    accel_button->setFont(*button_font);
+    accel_button->setGeometry(684,638,682,130);
+    connect(accel_button, &QPushButton::clicked, this, &MainWindow::Acceleration_clicked);
 
 
 }
@@ -89,7 +89,7 @@ Acceleration* MainWindow::getAccDialog()
     return accDialogPointer;
 }
 
-void MainWindow::Exitbutton_clicked()
+void MainWindow::Exit_button_clicked()
 {
     this->close();
 }

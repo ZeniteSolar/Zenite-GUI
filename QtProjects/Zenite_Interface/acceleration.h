@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QSize>
 #include <QScreen>
+#include <QFont>
 
 #include "main.h"
 
@@ -37,7 +38,7 @@ private slots:
 private:
     Ui::Acceleration *ui;
     MainWindow *mainwindow_pointer;
-    QPushButton *navi, *mainmenu;
+    QPushButton *navig_button, *mainmenu_button;
 };
 
 #endif // ACCELERATION_H

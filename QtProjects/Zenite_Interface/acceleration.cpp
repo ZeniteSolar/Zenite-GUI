@@ -9,6 +9,7 @@ Acceleration::Acceleration(QWidget *parent) :
 
     mainwindow_pointer = qobject_cast<MainWindow*>(this->parent());
 
+    // Get screen size, save to variables, scale window to fullscreen
     QScreen *screen;
     screen = qGuiApp->primaryScreen();
     QSize size = screen->size();
@@ -36,13 +37,19 @@ Acceleration::Acceleration(QWidget *parent) :
     _pitchDisplay->show();
     _rowDisplay->show();
 
-    navi = new QPushButton("Navegação", this);
-    navi->setGeometry(0,638,682,130);
-    connect(navi, &QPushButton::clicked, this, &Acceleration::Navigation_clicked);
+    // Create Buttons, set geometry and connect signals accordingly
+    QFont *button_font = new QFont();
+    button_font->setPointSize(28);
 
-    mainmenu = new QPushButton("Menu Principal", this);
-    mainmenu->setGeometry(684,638,682,130);
-    connect(mainmenu, &QPushButton::clicked, this, &Acceleration::MainMenu_clicked);
+    navig_button = new QPushButton("Navegação", this);
+    navig_button->setFont(*button_font);
+    navig_button->setGeometry(0,638,682,130);
+    connect(navig_button, &QPushButton::clicked, this, &Acceleration::Navigation_clicked);
+
+    mainmenu_button = new QPushButton("Menu Principal", this);
+    mainmenu_button->setFont(*button_font);
+    mainmenu_button->setGeometry(684,638,682,130);
+    connect(mainmenu_button, &QPushButton::clicked, this, &Acceleration::MainMenu_clicked);
 
 }
 
@@ -68,7 +75,7 @@ void Acceleration::Navigation_clicked()
     mainwindow_pointer->getNavDialog()->NavWindowCall();
 }
 
-
+// #### UI created, used for demonstration only #### //
 void Acceleration::on_yaw_dial_sliderMoved(int position)
 {
     DisplayPonteiro *pointerdisp = this->_pitchDisplay;
