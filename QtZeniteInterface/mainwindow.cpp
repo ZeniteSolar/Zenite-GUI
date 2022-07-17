@@ -19,10 +19,11 @@ MainWindow::MainWindow(QWidget *parent)
 // Image Setup
     labelzenite = new QLabel(this);
     QPixmap logoZenite;
-    logoZenite.load("zenitesolar.png");
+    logoZenite.load("C:/Users/gabri/OneDrive/Área de Trabalho/Barco/Zenite-Interface-PRG22107/QtZeniteInterface/zenitesolar.png");
+    //logoZenite.load("zenitesolar.png");
     labelzenite->setPixmap(logoZenite);
     labelzenite->setScaledContents(true);
-    labelzenite->setGeometry(round(screenwidth/4), 45, round(screenwidth/2), round(screenheight/1.33333));
+    labelzenite->setGeometry(round(screenwidth/4), 45, round(screenwidth/2), round(screenheight/1.3));
     labelzenite->repaint();
 
     // Active Widget Setup
