@@ -1,15 +1,4 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include "navigation.h"
-#include "acceleration.h"
-
-#include <QWidget>
-#include <QFrame>
-#include <QPushButton>
-#include <QLayout>
-#include <QPixmap>
-#include <QScreen>
-#include <math.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

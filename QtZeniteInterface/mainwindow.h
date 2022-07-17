@@ -5,8 +5,17 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QFont>
+#include <QWidget>
+#include <QFrame>
+#include <QPushButton>
+#include <QLayout>
+#include <QPixmap>
+#include <QScreen>
 
 #include "main.h"
+#include <math.h>
+
+#include "./ui_mainwindow.h"
 
 class Navigation;
 class Acceleration;
