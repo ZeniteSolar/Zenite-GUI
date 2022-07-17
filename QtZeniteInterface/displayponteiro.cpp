@@ -7,7 +7,13 @@
 DisplayPonteiro::DisplayPonteiro(QWidget *parent)
     : QWidget(parent)
 {
-    this->_value = -90;
+    this->_value = 0;
+}
+
+DisplayPonteiro::DisplayPonteiro(QWidget *parent, float value)
+    : QWidget(parent)
+{
+    this->_value = value;
 }
 
 void DisplayPonteiro::paintEvent(QPaintEvent *)
@@ -31,7 +37,7 @@ void DisplayPonteiro::paintEvent(QPaintEvent *)
     painter.setBrush(painterColor);
 
     painter.save();
-    painter.rotate(DisplayPonteiro::_value);
+    painter.rotate(-DisplayPonteiro::_value);       // Increasing angle now rotates anti-clockwise
     painter.drawConvexPolygon(pointerHand, 3);
     painter.restore();
 
@@ -51,5 +57,5 @@ void DisplayPonteiro::AddRotValue(int value){
 }
 
 void DisplayPonteiro::RotateToValue(int value){
-    this->_value += value - (_value +90);
+    this->_value = value;
 }

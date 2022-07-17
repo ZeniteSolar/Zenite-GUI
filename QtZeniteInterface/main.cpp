@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
     Acceleration *acc = new Acceleration(&mainw);
     mainw.setAccDialog(acc);
 
-
+    while(1){
+        
+    }
     return a.exec();
     /*
      * Sensor Init

@@ -8,7 +8,8 @@ class DisplayPonteiro : public QWidget
     Q_OBJECT
 public:
     /*explicit*/ DisplayPonteiro(QWidget *parent = nullptr);
-    int _value;
+    DisplayPonteiro(QWidget *parent, float value);
+    float _value;
     void AddRotValue(int value);
     void RotateToValue(int value);
     //~DisplayPonteiro();
