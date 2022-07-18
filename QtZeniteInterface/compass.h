@@ -15,11 +15,10 @@ public:
     void SetHeading(float heading_angle);
     void SetRaw(float x, float y, float z);
     float GetHeading();
-    std::vector<float*> GetRaw();
+    struct GetRaw();
 
 private:
-    const vector<float*> _mag_pointers {&_x_mag, &_y_mag, &_z_mag}; 
-    float _x_mag, _y_mag, _z_mag;
+    struct { float _x_mag, _y_mag, _z_mag; } _mag_struct;
     float _heading;
 
 };
