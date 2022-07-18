@@ -9,11 +9,12 @@ class DisplayPonteiro : public QWidget
 public:
     /*explicit*/ DisplayPonteiro(QWidget *parent = nullptr);
     DisplayPonteiro(QWidget *parent, float value);
-    float _value;
     void AddRotValue(int value);
     void RotateToValue(int value);
     //~DisplayPonteiro();
 
+    float _value;
+    
 protected:
     void paintEvent(QPaintEvent *event) override;
 };
