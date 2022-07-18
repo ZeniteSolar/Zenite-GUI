@@ -2,7 +2,10 @@
 #define COMPASS_H
 
 #include "main.h"
+
 #include <vector>
+
+using namespace std;
 
 class Compass
 {
@@ -12,7 +15,7 @@ public:
     void SetHeading(float heading_angle);
     void SetRaw(float x, float y, float z);
     float GetHeading();
-    vector<float*> GetRaw();
+    std::vector<float*> GetRaw();
 
 private:
     const vector<float*> _mag_pointers {&_x_mag, &_y_mag, &_z_mag}; 

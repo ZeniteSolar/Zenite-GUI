@@ -2,21 +2,21 @@
 
 Compass::Compass()
 {
-    this->_x_mag = 0;
-    this->_x_mag = 0;
-    this->_x_mag = 0;
-    this->heading = 0;
+    _x_mag = 0;
+    _x_mag = 0;
+    _x_mag = 0;
+    _heading = 0;
 }
 
-void Compass::SetHeading(heading_angle)
+void Compass::SetHeading(float heading_angle)
 {
-    this->_heading = heading_angle;
+    _heading = heading_angle;
 }
 void Compass::SetRaw(float x, float y, float z)
 {
-    this->_x_mag = x;
-    this->_y_mag = y;
-    this->_z_mag = z;
+    _x_mag = x;
+    _y_mag = y;
+    _z_mag = z;
 }
 float Compass::GetHeading()
 {
