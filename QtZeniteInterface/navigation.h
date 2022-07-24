@@ -6,6 +6,7 @@
 #include <QScreen>
 #include <QSize>
 #include <QFont>
+#include <QLCDNumber>
 
 #include "main.h"
 
@@ -25,6 +26,7 @@ class Navigation : public QDialog
 public:
     explicit Navigation(QWidget *parent = nullptr);
     DisplayPonteiro *_compassDisplay;
+    QLCDNumber *_latitude, *_longitude, *_vbat1, *_vbat2, *_vbat3;
     void NavWindowCall();
     ~Navigation();
 
@@ -32,8 +34,6 @@ private slots:
     void MainMenu_clicked();
 
     void Acceleration_clicked();
-
-    void on_compass_dial_sliderMoved(int position);
 
 private:
     Ui::Navigation *ui;

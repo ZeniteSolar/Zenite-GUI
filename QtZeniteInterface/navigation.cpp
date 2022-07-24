@@ -19,10 +19,48 @@ Navigation::Navigation(QWidget *parent) :
     this->repaint();
 
 
-    // Initiate, set geometry and show pointer type displays contained in window
+    // Initiate, set geometry and variables of this window's widgets
     _compassDisplay = new DisplayPonteiro(this);
     _compassDisplay->setGeometry(1039,60,200,200);
+
+    _latitude = new QLCDNumber(this);
+    _latitude->setGeometry(150, 40, 260, 125);
+    _latitude->setDigitCount(5);
+    _latitude->setMode(QLCDNumber::Dec);
+    _latitude->setSegmentStyle(QLCDNumber::Filled);
+
+    _longitude = new QLCDNumber(this);
+    _longitude->setGeometry(150, 165, 260, 125);
+    _longitude->setDigitCount(5);
+    _longitude->setMode(QLCDNumber::Dec);
+    _longitude->setSegmentStyle(QLCDNumber::Filled);
+
+    _vbat1 = new QLCDNumber(this);
+    _vbat1->setGeometry(660, 100, 141, 51);
+    _vbat1->setDigitCount(5);
+    _vbat1->setMode(QLCDNumber::Dec);
+    _vbat1->setSegmentStyle(QLCDNumber::Filled);
+
+    _vbat2 = new QLCDNumber(this);
+    _vbat2->setGeometry(660, 160, 141, 51);
+    _vbat2->setDigitCount(5);
+    _vbat2->setMode(QLCDNumber::Dec);
+    _vbat2->setSegmentStyle(QLCDNumber::Filled);
+
+    _vbat3 = new QLCDNumber(this);
+    _vbat3->setGeometry(660, 220, 141, 51);
+    _vbat3->setDigitCount(5);
+    _vbat3->setMode(QLCDNumber::Dec);
+    _vbat3->setSegmentStyle(QLCDNumber::Filled);
+
+
+    // Show said widgets
     _compassDisplay->show();
+    _vbat1->show();
+    _vbat2->show();
+    _vbat3->show();
+
+
 
 
     // Create Buttons, set geometry and connect signals accordingly
@@ -65,12 +103,5 @@ void Navigation::MainMenu_clicked()
 void Navigation::Acceleration_clicked()
 {
     mainwindow_pointer->getAccDialog()->AccWindowCall();
-}
-
-// #### UI created, used for demonstration only #### //
-void Navigation::on_compass_dial_sliderMoved(int position)
-{
-    DisplayPonteiro *pointerdisp = this->_compassDisplay;
-    pointerdisp->RotateToValue(position);
 }
 
