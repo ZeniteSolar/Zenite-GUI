@@ -15,6 +15,7 @@
 #include <QIODevice>
 #include <QString>
 #include <QTextStream>
+#include <QLCDNumber>
 #include <cstdio>
 
 #endif // MAIN_H
