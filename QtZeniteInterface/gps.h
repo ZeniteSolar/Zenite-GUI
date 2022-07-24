@@ -12,8 +12,7 @@ public:
     float GetLatitude();
     float GetLongitude();
 
-    std::vector<time_t*> GetTimeToday();
-    struct GetTimeCalendar();
+    struct tm GetTime();
     ReadTime();
     ReadPosition();
 
