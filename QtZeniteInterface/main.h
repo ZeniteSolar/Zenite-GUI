@@ -10,5 +10,11 @@
 #include <QGuiApplication>
 #include <QApplication>
 #include <QScreen>
+#include <QTimer>
+#include <QFile>
+#include <QIODevice>
+#include <QString>
+#include <QTextStream>
+#include <cstdio>
 
 #endif // MAIN_H
