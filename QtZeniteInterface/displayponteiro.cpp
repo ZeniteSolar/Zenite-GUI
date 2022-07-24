@@ -52,10 +52,10 @@ void DisplayPonteiro::paintEvent(QPaintEvent *)
 
 }
 
-void DisplayPonteiro::AddRotValue(int value){
+void DisplayPonteiro::AddRotValue(float value){
     this->_value += value;
 }
 
-void DisplayPonteiro::RotateToValue(int value){
+void DisplayPonteiro::RotateToValue(float value){
     this->_value = value;
 }
