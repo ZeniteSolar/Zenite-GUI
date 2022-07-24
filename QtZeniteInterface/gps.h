@@ -11,14 +11,19 @@ public:
     GPS();
     float GetLatitude();
     float GetLongitude();
-
     struct tm GetTime();
-    ReadTime();
-    ReadPosition();
+    char* GetAscTime();
 
 private:
+    //friend class CAN;
+    friend class Navigation;
+
+    void SetCoordinates(float lat, float longi);
+    //void SetTime(int sec, int min, int hour, int day, int mon, int year);
+    void SetTime();
+
     struct tm _time_struct;
-    float latitude, longitude;
+    float _latitude, _longitude;
 };
 
 #endif // GPS_H
