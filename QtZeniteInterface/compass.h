@@ -12,8 +12,6 @@ class Compass
 public:
     Compass();
 
-    void SetHeading(float heading_angle);
-    void SetRaw(float x, float y, float z);
     float GetHeading();
 
     struct magnitude { float _x_mag, _y_mag, _z_mag; };
@@ -21,6 +19,12 @@ public:
     magnitude GetRaw();
 
 private:
+    //friend class CAN;
+    friend class Navigation;
+    
+    void SetHeading(float heading_angle);
+    void SetRaw(float x, float y, float z);
+    
     magnitude _mag_struct;
     float _heading;
 
