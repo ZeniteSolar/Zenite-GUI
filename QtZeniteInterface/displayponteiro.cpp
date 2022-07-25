@@ -24,7 +24,8 @@ void DisplayPonteiro::paintEvent(QPaintEvent *)
         QPoint(0, -80)
     };
 
-    QColor painterColor(0, 0, 0);
+    QColor indicatorColor(0, 0, 0);
+    QColor intervalColor(255, 89, 0);
 
     int side = qMin(width(), height());
 
@@ -34,14 +35,14 @@ void DisplayPonteiro::paintEvent(QPaintEvent *)
     painter.scale(side / 200.0, side / 200.0);
 
     painter.setPen(Qt::NoPen);
-    painter.setBrush(painterColor);
+    painter.setBrush(indicatorColor);
 
     painter.save();
     painter.rotate(-DisplayPonteiro::_value);       // Increasing angle now rotates anti-clockwise
     painter.drawConvexPolygon(pointerHand, 3);
     painter.restore();
 
-    painter.setPen(painterColor);
+    painter.setPen(intervalColor);
 
     for (int i = 0; i < 24; ++i) {
         painter.drawLine(88, 0, 96, 0);
@@ -50,10 +51,6 @@ void DisplayPonteiro::paintEvent(QPaintEvent *)
 
     DisplayPonteiro::update();
 
-}
-
-void DisplayPonteiro::AddRotValue(float value){
-    this->_value += value;
 }
 
 void DisplayPonteiro::RotateToValue(float value){
