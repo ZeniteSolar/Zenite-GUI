@@ -42,9 +42,13 @@ int main(int argc, char *argv[])
         fscanf(fp, "%d,%f,%f,%f,%f,%f,%f,%f", &id, &time, &latitude, &longitude,
               &voltage1, &voltage2, &voltage3, &heading);
             nav->UpdateWidgets(latitude, longitude, voltage1, voltage2, voltage3, heading);
+
+        if(feof(fp)){
+            rewind(fp);
+        }
     });
 
-    timer->start(1);
+    timer->start(1);    // Argument is type int (ms)
 
     return a.exec();
     /*
