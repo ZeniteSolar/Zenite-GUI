@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-// Interface Setup
+    // Screen Setup
     QScreen *screen;
     screen = qGuiApp->primaryScreen();
     QSize size = screen->size();
@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget()->setGeometry(0,0,screenwidth,screenheight);
     this->repaint();
 
-// Image Setup
+    // Image Setup
     labelzenite = new QLabel(this);
     QPixmap logoZenite;
     logoZenite.load("C:/Users/gabri/OneDrive/Área de Trabalho/Barco/Zenite-Interface-PRG22107/QtZeniteInterface/zenitesolar.png");
