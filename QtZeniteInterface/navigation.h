@@ -31,9 +31,10 @@ public:
     explicit Navigation(QWidget *parent = nullptr);
     DisplayPonteiro *_compassDisplay;
     QLCDNumber *_latitude_lcd, *_longitude_lcd, *_vbat1_lcd, *_vbat2_lcd, *_vbat3_lcd;
+    QLabel *_time_label;
     void NavWindowCall();
     ~Navigation();
-    void SetPointers(ElectricData* electric, GPS* sensor_pointer, Compass* sensor_compass);
+    void SetPointers(ElectricData* electric, GPS* sensor_gps, Compass* sensor_compass);
     void UpdateWidgets(float lat, float lgt, float v1, float v2, float v3, float heading);
 
 private slots:
