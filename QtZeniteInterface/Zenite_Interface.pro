@@ -11,7 +11,6 @@ CONFIG += c++17
 SOURCES += \
     compass.cpp \
     electricdata.cpp \
-    electricdata.cpp \
     gps.cpp \
     gyroscope.cpp \
     main.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
 
 HEADERS += \
     compass.h \
-    electricdata.h \
     electricdata.h \
     gps.h \
     gyroscope.h \
