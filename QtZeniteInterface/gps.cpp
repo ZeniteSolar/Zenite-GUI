@@ -3,7 +3,7 @@
 GPS::GPS()
 {
     SetCoordinates(0, 0);
-    SetTime()
+    SetTime();
 }
 
 float GPS::GetLatitude()
@@ -16,14 +16,9 @@ float GPS::GetLongitude()
     return _longitude;
 }
 
-GPS::tm GPS::GetTime()
+tm GPS::GetTime()
 {
     return _time_struct;
-}
-
-char* GetAscTime()
-{
-    return asctime(&_time_struct);
 }
 
 void GPS::SetCoordinates(float lat, float longi)
@@ -36,7 +31,8 @@ void GPS::SetCoordinates(float lat, float longi)
 void GPS::SetTime()
 {
     time_t current_time;
-    time(&current_time);
+    current_time = time(&current_time);
 
-    _time_struct = localtime(&current_time);
+    tm* tpoint = &_time_struct;
+    tpoint = localtime(&current_time);
 }

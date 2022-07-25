@@ -5,14 +5,15 @@
 
 #include <time.h>
 
+
 class GPS
 {
 public:
     GPS();
     float GetLatitude();
     float GetLongitude();
-    struct tm GetTime();
-    char* GetAscTime();
+
+    tm GetTime();
 
 private:
     //friend class CAN;
@@ -22,7 +23,7 @@ private:
     //void SetTime(int sec, int min, int hour, int day, int mon, int year);
     void SetTime();
 
-    struct tm _time_struct;
+    tm _time_struct;
     float _latitude, _longitude;
 };
 
