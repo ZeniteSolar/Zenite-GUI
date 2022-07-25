@@ -9,8 +9,13 @@ int main(int argc, char *argv[])
     MainWindow mainw;
     mainw.showFullScreen();
 
+    ElectricData *electric = new ElectricData();
+    GPS * sensor_gps = new GPS();
+    Compass *sensor_compass = new Compass();
+
     Navigation *nav = new Navigation(&mainw);
     mainw.setNavDialog(nav);
+    nav->SetPointers(electric, sensor_gps, sensor_compass);
 
     Acceleration *acc = new Acceleration(&mainw);
     mainw.setAccDialog(acc);
@@ -36,12 +41,7 @@ int main(int argc, char *argv[])
 
         fscanf(fp, "%d,%f,%f,%f,%f,%f,%f,%f", &id, &time, &latitude, &longitude,
               &voltage1, &voltage2, &voltage3, &heading);
-           // nav->_latitude->display(latitude);
-           // nav->_longitude->display(longitude);
-            nav->_vbat1->display(voltage1);
-            nav->_vbat2->display(voltage2);
-            nav->_vbat3->display(voltage3);
-           // nav->_compassDisplay->RotateToValue(heading);
+            nav->UpdateWidgets(latitude, longitude, voltage1, voltage2, voltage3, heading);
     });
 
     timer->start(1);

@@ -5,6 +5,9 @@
 #include "navigation.h"
 #include "acceleration.h"
 #include "displayponteiro.h"
+#include "electricdata.h"
+#include "gps.h"
+#include "compass.h"
 
 #include <QMainWindow>
 #include <QGuiApplication>
