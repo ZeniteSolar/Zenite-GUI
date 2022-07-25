@@ -1,6 +1,8 @@
 #ifndef ELECTRICDATA_H
 #define ELECTRICDATA_H
 
+#include "main.h"
+
 class ElectricData
 {
 public:
