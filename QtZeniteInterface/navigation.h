@@ -12,7 +12,11 @@
 
 #include "ui_navigation.h"
 
+
 class DisplayPonteiro;
+class GPS;
+class Compass;
+class ElectricData;
 class MainWindow;
 
 QT_BEGIN_NAMESPACE
@@ -26,17 +30,11 @@ class Navigation : public QDialog
 public:
     explicit Navigation(QWidget *parent = nullptr);
     DisplayPonteiro *_compassDisplay;
-    QLCDNumber *_latitude, *_longitude, *_vbat1, *_vbat2, *_vbat3;
+    QLCDNumber *_latitude_lcd, *_longitude_lcd, *_vbat1_lcd, *_vbat2_lcd, *_vbat3_lcd;
     void NavWindowCall();
     ~Navigation();
-    void update_widgets()
-
-    // nav->_latitude->display(latitude);
-    // nav->_longitude->display(longitude);
-     nav->_vbat1->display(voltage1);
-     nav->_vbat2->display(voltage2);
-     nav->_vbat3->display(voltage3);
-    // nav->_compassDisplay->RotateToValue(heading);
+    void SetPointers(ElectricData* electric, GPS* sensor_pointer, Compass* sensor_compass);
+    void UpdateWidgets(float lat, float lgt, float v1, float v2, float v3, float heading);
 
 private slots:
     void MainMenu_clicked();
@@ -47,6 +45,9 @@ private:
     Ui::Navigation *ui;
     MainWindow *mainwindow_pointer;
     QPushButton *accel_button, *mainmenu_button;
+    ElectricData *_electricdata_pointer;
+    GPS *_gps_pointer;
+    Compass *_compass_pointer;
 };
 
 #endif // NAVIGATION_H

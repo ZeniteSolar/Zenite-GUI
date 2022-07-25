@@ -9,6 +9,7 @@ Navigation::Navigation(QWidget *parent) :
     mainwindow_pointer = qobject_cast<MainWindow*>(this->parent());
 
 
+
     // Get screen size, save to variables, scale window to fullscreen
     QScreen *screen;
     screen = qGuiApp->primaryScreen();
@@ -18,40 +19,39 @@ Navigation::Navigation(QWidget *parent) :
     this->setGeometry(0,0,screenwidth,screenheight);
     this->repaint();
 
-
     // Initiate, set geometry and variables of this window's widgets
     _compassDisplay = new DisplayPonteiro(this);
     _compassDisplay->setGeometry(1039,60,200,200);
 
-    _latitude = new QLCDNumber(this);
-    _latitude->setGeometry(150, 40, 260, 125);
-    _latitude->setDigitCount(5);
-    _latitude->setMode(QLCDNumber::Dec);
-    _latitude->setSegmentStyle(QLCDNumber::Filled);
+    _latitude_lcd = new QLCDNumber(this);
+    _latitude_lcd->setGeometry(150, 40, 260, 125);
+    _latitude_lcd->setDigitCount(5);
+    _latitude_lcd->setMode(QLCDNumber::Dec);
+    _latitude_lcd->setSegmentStyle(QLCDNumber::Filled);
 
-    _longitude = new QLCDNumber(this);
-    _longitude->setGeometry(150, 165, 260, 125);
-    _longitude->setDigitCount(5);
-    _longitude->setMode(QLCDNumber::Dec);
-    _longitude->setSegmentStyle(QLCDNumber::Filled);
+    _longitude_lcd = new QLCDNumber(this);
+    _longitude_lcd->setGeometry(150, 165, 260, 125);
+    _longitude_lcd->setDigitCount(5);
+    _longitude_lcd->setMode(QLCDNumber::Dec);
+    _longitude_lcd->setSegmentStyle(QLCDNumber::Filled);
 
-    _vbat1 = new QLCDNumber(this);
-    _vbat1->setGeometry(660, 100, 141, 51);
-    _vbat1->setDigitCount(5);
-    _vbat1->setMode(QLCDNumber::Dec);
-    _vbat1->setSegmentStyle(QLCDNumber::Filled);
+    _vbat1_lcd = new QLCDNumber(this);
+    _vbat1_lcd->setGeometry(660, 100, 141, 51);
+    _vbat1_lcd->setDigitCount(5);
+    _vbat1_lcd->setMode(QLCDNumber::Dec);
+    _vbat1_lcd->setSegmentStyle(QLCDNumber::Filled);
 
-    _vbat2 = new QLCDNumber(this);
-    _vbat2->setGeometry(660, 160, 141, 51);
-    _vbat2->setDigitCount(5);
-    _vbat2->setMode(QLCDNumber::Dec);
-    _vbat2->setSegmentStyle(QLCDNumber::Filled);
+    _vbat2_lcd = new QLCDNumber(this);
+    _vbat2_lcd->setGeometry(660, 160, 141, 51);
+    _vbat2_lcd->setDigitCount(5);
+    _vbat2_lcd->setMode(QLCDNumber::Dec);
+    _vbat2_lcd->setSegmentStyle(QLCDNumber::Filled);
 
-    _vbat3 = new QLCDNumber(this);
-    _vbat3->setGeometry(660, 220, 141, 51);
-    _vbat3->setDigitCount(5);
-    _vbat3->setMode(QLCDNumber::Dec);
-    _vbat3->setSegmentStyle(QLCDNumber::Filled);
+    _vbat3_lcd = new QLCDNumber(this);
+    _vbat3_lcd->setGeometry(660, 220, 141, 51);
+    _vbat3_lcd->setDigitCount(5);
+    _vbat3_lcd->setMode(QLCDNumber::Dec);
+    _vbat3_lcd->setSegmentStyle(QLCDNumber::Filled);
 
 
     // Show said widgets
@@ -83,6 +83,13 @@ Navigation::Navigation(QWidget *parent) :
 
 }
 
+void Navigation::SetPointers(ElectricData* electric, GPS* sensor_gps, Compass* sensor_compass)
+{
+    _electricdata_pointer = electric;
+    _gps_pointer = sensor_gps;
+    _compass_pointer = sensor_compass;
+}
+
 Navigation::~Navigation()
 {
     delete ui;
@@ -105,3 +112,20 @@ void Navigation::Acceleration_clicked()
     mainwindow_pointer->getAccDialog()->AccWindowCall();
 }
 
+void Navigation::UpdateWidgets(float lat, float lgt, float v1, float v2, float v3, float heading)
+{
+    // Will be done by can_check, These functions are private but Navigation Friendly (Planned CAN Friendly)
+        _gps_pointer->SetCoordinates(lat, lgt);
+        _electricdata_pointer->SetMainBankData(v1, 0, v2, 0, v3, 0);
+        _compass_pointer->SetHeading(heading);
+
+    _latitude_lcd->display(_gps_pointer->GetLatitude());
+    _longitude_lcd->display(_gps_pointer->GetLatitude());
+
+    ElectricData::batterybank bbk = _electricdata_pointer->GetBBank();
+    _vbat1_lcd->display(bbk._bat1volt);
+    _vbat2_lcd->display(bbk._bat2volt);
+    _vbat3_lcd->display(bbk._bat3volt);
+
+    _compassDisplay->RotateToValue(_compass_pointer->GetHeading());
+}
