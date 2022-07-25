@@ -8,6 +8,7 @@ class ElectricData
 public:
     ElectricData();
 
+    // May include Power consumption, waste and operation limits with _batTemperature Data or aproximation
     struct batterybank {float _bat1volt, _bat1current, _bat2volt, _bat2current,
                         _bat3volt, _bat3current, _bankVoltage, _maxdeviation; };
 
