@@ -2,10 +2,8 @@
 
 Compass::Compass()
 {
-    _mag_struct._x_mag = 0;
-    _mag_struct._x_mag = 0;
-    _mag_struct._x_mag = 0;
-    _heading = 0;
+    SetRaw(0, 0, 0);
+    SetHeading(0);
 }
 
 void Compass::SetHeading(float heading_angle)
